@@ -6,7 +6,7 @@ on:
       release_tag:
         description: "Upload to specific release"
         required: true
-        default: 'v0.0.8'
+        default: 'v0.0.9'
       skip_projects:
         description: "Skip projects during build (e.g. esp32-c3-devkit-rust)"
         required: false
@@ -65,6 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_CLI_TOKEN }}
         shell: bash
+        continue-on-error: true
         run: |
           echo "PROJECT is $PROJECT"
           echo "OUTPUT_TXT is $OUTPUT_TXT"

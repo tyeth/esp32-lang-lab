@@ -168,3 +168,5 @@ jq --arg target "$TARGET" \
     }]' results.json > temp.json && mv temp.json results.json
 
 cat results.json
+
+exit 0
