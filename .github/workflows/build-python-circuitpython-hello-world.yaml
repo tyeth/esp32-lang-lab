@@ -80,16 +80,22 @@ jobs:
             tests/python/circuitpython/test-circuitpython.sh $TARGET "$(pwd)" "${{ github.event.inputs.release_tag }}" > "$PROJECT/$OUTPUT_TXT"
 
             # Upload log
+            set +e
             asset_path="$PROJECT/$OUTPUT_TXT"
             asset_name="$OUTPUT_TXT"
+            echo "asset path $asset_path"
             curl \
               --request POST \
               --header "authorization: Bearer $GITHUB_TOKEN" \
               --header "Content-Type: application/octet-stream" \
               --data-binary "@$asset_path" \
               --url "${{ needs.get_release.outputs.upload_url }}?name=${TARGET}_Run${GITHUB_RUN_NUMBER}_${asset_name}"
-
+            
+            set -e
+            
+            echo "Uploaded wokwi report"
             ls $PROJECT/$OUTPUT
+            
             # Extract heap size (you might need to adjust the parsing command)
             HEAP_SIZE=$(grep 'Minimum free heap size' ${PROJECT}/${OUTPUT_TXT} | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
             
