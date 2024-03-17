@@ -6,7 +6,7 @@ on:
       release_tag:
         description: "Upload to specific release"
         required: true
-        default: 'v0.0.5'
+        default: 'v0.0.6'
       skip_projects:
         description: "Skip projects during build (e.g. esp32-c3-devkit-rust)"
         required: false
