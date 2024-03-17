@@ -90,7 +90,7 @@ jobs:
               --url "${{ needs.get_release.outputs.upload_url }}?name=${asset_name}"
 
             # Extract heap size (you might need to adjust the parsing command)
-            HEAP_SIZE=$(grep 'Minimum free heap size' $OUTPUT_TXT | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
+            HEAP_SIZE=$(grep 'Minimum free heap size' $PROJECT/$OUTPUT_TXT | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
 
             # Add a new record to the JSON database
             jq --arg target "$TARGET" \
