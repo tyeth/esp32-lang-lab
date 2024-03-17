@@ -126,7 +126,9 @@ echo 'version = 1' >> wokwi.toml
 echo "elf = \"${OUTPUT_BIN}\"" >> wokwi.toml
 echo "firmware = \"${OUTPUT_BIN}\"" >> wokwi.toml
 
-echo "" > ${PROJECT}/${OUTPUT_TXT}
+echo "" > "${PROJECT}/${OUTPUT_TXT}"
+ls "${PROJECT}/${OUTPUT_TXT}"
+cat "${PROJECT}/${OUTPUT_TXT}"
 
 # Run Wokwi test
 wokwi-cli --timeout ${WOKWI_TIMEOUT} \
