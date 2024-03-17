@@ -59,7 +59,7 @@ jobs:
         run: |
           echo "Current dir:"
           pwd
-          echo "../tests/python/circuitpython/test-circuitpython.sh" esp32c3 "$(pwd)" "v0.0.1" "\>" "${PROJECT}/${OUTPUT_TXT}"
+          echo "../tests/python/circuitpython/test-circuitpython.sh" esp32c3 "$(pwd)" "v0.0.1" "\>" ${PROJECT}/${OUTPUT_TXT}
           echo "Done printing thing"
           for TARGET in esp32 esp32s2 esp32s3 esp32c3 esp32c6 esp32h2; do
             ../tests/python/circuitpython/test-circuitpython.sh $TARGET "$(pwd)" "${{ github.event.inputs.release_tag }}" > "${PROJECT}/${OUTPUT_TXT}"
