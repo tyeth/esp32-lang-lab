@@ -6,7 +6,7 @@ on:
       release_tag:
         description: "Upload to specific release"
         required: true
-        default: 'v0.0.2'
+        default: 'v0.0.3'
       skip_projects:
         description: "Skip projects during build (e.g. esp32-c3-devkit-rust)"
         required: false
@@ -101,7 +101,7 @@ jobs:
                 --arg value "$HEAP_SIZE" \
                 --arg unit "bytes" \
                 --arg note "" \
-                --arg version "8.2.9" \
+                --arg version "9.0.0-rc.1" \
                 --arg timestamp "$(date -Iseconds)" \
                 '. += [{
                   target: $target,
@@ -122,7 +122,8 @@ jobs:
           echo "| Target | Language | Flavor | Example | Property | Value | Unit | Note | Version | Timestamp |" > report.md
           echo "|--------|----------|--------|---------|----------|-------|------|------|---------|-----------|" >> report.md
           jq -r '.[] | "| \(.target) | \(.language) | \(.flavor) | \(.example) | \(.property) | \(.value) | \(.unit) | \(.note) | \(.version) | \(.timestamp) |"' results.json >> report.md
-
+          pwd
+          cat report.md
           asset_path="report.md"
           asset_name="python-circuitpython-hello-world-report.md"
           curl \
