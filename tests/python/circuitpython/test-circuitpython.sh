@@ -141,6 +141,8 @@ wokwi-cli --timeout ${WOKWI_TIMEOUT} \
 # Extract heap size (you might need to adjust the parsing command)
 HEAP_SIZE=$(grep 'Minimum free heap size' ${OUTPUT_TXT} | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
 
+echo "HEAP SIZE:" ${HEAP_SIZE}
+
 # Add a new record to the JSON database
 jq --arg target "$TARGET" \
     --arg language "Python" \
