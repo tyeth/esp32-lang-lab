@@ -157,4 +157,4 @@ jq --arg target "$TARGET" \
         timestamp: $timestamp
     }]' results.json > temp.json && mv temp.json results.json
 
-cat result.json
+cat results.json
