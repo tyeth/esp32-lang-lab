@@ -11,6 +11,10 @@ on:
         description: "Skip projects during build (e.g. esp32-c3-devkit-rust)"
         required: false
         default: ''
+env:
+  # Setting an environment variable with the value of a configuration variable
+  PROJECT: ${{ vars.PROJECT }}
+  OUTPUT_TXT: ${{ vars.OUTPUT_TXT }}
 
 jobs:
   get_release:
