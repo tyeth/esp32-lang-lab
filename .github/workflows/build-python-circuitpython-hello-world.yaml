@@ -58,6 +58,7 @@ jobs:
         shell: bash
         run: |
           for TARGET in esp32 esp32s2 esp32s3 esp32c3 esp32c6 esp32h2; do
+            echo ../tests/python/circuitpython/test-circuitpython.sh esp32c3 "`pwd`" "v0.0.1" > "${PROJECT}/${OUTPUT_TXT}"
             ../tests/python/circuitpython/test-circuitpython.sh esp32c3 "`pwd`" "${{ github.event.inputs.release_tag }}" > "${PROJECT}/${OUTPUT_TXT}"
 
             # Upload log
