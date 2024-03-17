@@ -77,6 +77,7 @@ jobs:
           echo "Done printing thing"
           tree
           for TARGET in esp32s2 esp32 esp32s3 esp32c3 esp32c6 esp32h2; do
+            echo "***Running target: $TARGET"
             tests/python/circuitpython/test-circuitpython.sh $TARGET "$(pwd)" "${{ github.event.inputs.release_tag }}" > "$PROJECT/$OUTPUT_TXT"
 
             # Upload log
