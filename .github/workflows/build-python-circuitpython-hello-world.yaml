@@ -89,7 +89,7 @@ jobs:
               --header "authorization: Bearer $GITHUB_TOKEN" \
               --header "Content-Type: application/octet-stream" \
               --data-binary "@$asset_path" \
-              --url "${{ needs.get_release.outputs.upload_url }}?name=${TARGET}_Run${GITHUB_RUN_NUMBER}_${asset_name}"
+              --url "${{ needs.get_release.outputs.upload_url }}?name=Run${GITHUB_RUN_ID}_${TARGET}_${asset_name}"
             
             echo "Uploaded wokwi report"
             ls -la $PROJECT/$OUTPUT
@@ -136,7 +136,7 @@ jobs:
             --header "authorization: Bearer $GITHUB_TOKEN" \
             --header "Content-Type: application/octet-stream" \
             --data-binary "@$asset_path" \
-            --url "${{ needs.get_release.outputs.upload_url }}?name=${TARGET}_Run${GITHUB_RUN_NUMBER}_${asset_name}"
+            --url "${{ needs.get_release.outputs.upload_url }}?name=Run${GITHUB_RUN_ID}_${TARGET}_${asset_name}"
 
           asset_path="results.json"
           asset_name="python-circuitpython-hello-world-results.json"
@@ -145,4 +145,4 @@ jobs:
             --header "authorization: Bearer $GITHUB_TOKEN" \
             --header "Content-Type: application/octet-stream" \
             --data-binary "@$asset_path" \
-            --url "${{ needs.get_release.outputs.upload_url }}?name=${TARGET}_Run${GITHUB_RUN_NUMBER}_${asset_name}"
+            --url "${{ needs.get_release.outputs.upload_url }}?name=Run${GITHUB_RUN_ID}_${TARGET}_${asset_name}"
