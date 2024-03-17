@@ -89,8 +89,11 @@ jobs:
               --data-binary "@$asset_path" \
               --url "${{ needs.get_release.outputs.upload_url }}?name=${TARGET}_Run${GITHUB_RUN_NUMBER}_${asset_name}"
 
+            ls $PROJECT/$OUTPUT
             # Extract heap size (you might need to adjust the parsing command)
-            HEAP_SIZE=$(grep 'Minimum free heap size' $PROJECT/$OUTPUT_TXT | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
+            HEAP_SIZE=$(grep 'Minimum free heap size' ${PROJECT}/${OUTPUT_TXT} | tr -d '\n' | sed -e 's/Minimum free heap size: //' -e 's/ bytes//')
+            
+            echo "Heap Size:" $HEAP_SIZE
 
             # Add a new record to the JSON database
             jq --arg target "$TARGET" \
@@ -114,7 +117,7 @@ jobs:
                   note: $note,
                   version: $version,
                   timestamp: $timestamp
-                }]' results.json > temp.json && mv temp.json results.json
+                }]' results.json > temp.json && rm results.json && mv temp.json results.json
 
           done
 
@@ -122,8 +125,6 @@ jobs:
           echo "| Target | Language | Flavor | Example | Property | Value | Unit | Note | Version | Timestamp |" > report.md
           echo "|--------|----------|--------|---------|----------|-------|------|------|---------|-----------|" >> report.md
           jq -r '.[] | "| \(.target) | \(.language) | \(.flavor) | \(.example) | \(.property) | \(.value) | \(.unit) | \(.note) | \(.version) | \(.timestamp) |"' results.json >> report.md
-          pwd
-          cat report.md
           asset_path="report.md"
           asset_name="python-circuitpython-hello-world-report.md"
           curl \
