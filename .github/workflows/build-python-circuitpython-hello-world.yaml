@@ -65,6 +65,7 @@ jobs:
           echo "OUTPUT_TXT is $OUTPUT_TXT"
           echo "Current dir:"
           pwd
+          mkdir -p $PROJECT
           echo "../tests/python/circuitpython/test-circuitpython.sh" esp32c3 "$(pwd)" "v0.0.1" "\>" $PROJECT/$OUTPUT_TXT
           echo "Done printing thing"
           for TARGET in esp32 esp32s2 esp32s3 esp32c3 esp32c6 esp32h2; do
