@@ -24,6 +24,10 @@ if [[ -z "${ALLOWED_TARGETS[$TARGET]}" ]]; then
     exit 1
 fi
 
+if [[ -z "${WOKWI_TIMEOUT}" ]]; then
+    echo "Setting default wokwi timeout of 15seconds"
+    declare -A WOKWI_TIMEOUT=15000
+fi
 
 # source path to wokwi-cli
 export PATH=$PATH:${HOME}/bin
@@ -123,7 +127,7 @@ echo "elf = \"${OUTPUT_BIN}\"" >> wokwi.toml
 echo "firmware = \"${OUTPUT_BIN}\"" >> wokwi.toml
 
 # Run Wokwi test
-wokwi-cli --timeout 15000 \
+wokwi-cli --timeout ${WOKWI_TIMEOUT} \
     --timeout-exit-code 0 \
     --serial-log-file ${PROJECT}/${OUTPUT_TXT} \
     --elf ${OUTPUT_BIN} \
@@ -142,7 +146,7 @@ jq --arg target "$TARGET" \
     --arg value "$HEAP_SIZE" \
     --arg unit "bytes" \
     --arg note "" \
-    --arg version "8.2.9" \
+    --arg version "$CIRCUITPYTHON_VERSION_DEFAULT" \
     --arg timestamp "$(date -Iseconds)" \
     '. += [{
         target: $target,

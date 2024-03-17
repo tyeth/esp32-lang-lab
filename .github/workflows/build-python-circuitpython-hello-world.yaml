@@ -11,10 +11,15 @@ on:
         description: "Skip projects during build (e.g. esp32-c3-devkit-rust)"
         required: false
         default: ''
+      wokwi_timeout:
+        description: "Timeout for wokwi tests (ms)"
+        required: true
+        default: '95000'
 env:
   # Setting an environment variable with the value of a configuration variable
   PROJECT: ${{ vars.PROJECT }}
   OUTPUT_TXT: ${{ vars.OUTPUT_TXT }}
+  WOKWI_TIMEOUT: ${{ github.event.inputs.wokwi_timeout }}
 
 jobs:
   get_release:
