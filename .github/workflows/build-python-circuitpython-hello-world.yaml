@@ -65,6 +65,7 @@ jobs:
           echo "OUTPUT_TXT is $OUTPUT_TXT"
           echo "Current dir:"
           pwd
+          [ -f results.json ] || echo "{}" > results.json
           mkdir -p $PROJECT
           echo "../tests/python/circuitpython/test-circuitpython.sh" esp32c3 "$(pwd)" "v0.0.1" "\>" $PROJECT/$OUTPUT_TXT
           echo "Done printing thing"
