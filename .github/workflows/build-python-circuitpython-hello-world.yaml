@@ -106,7 +106,7 @@ jobs:
           # Generate report
           echo "| Target | Language | Flavor | Example | Property | Value | Unit | Note | Version | Timestamp |" > report.md
           echo "|--------|----------|--------|---------|----------|-------|------|------|---------|-----------|" >> report.md
-          jq -r '.[] | "| \(.target) | \(.language) | \(.flavor) | \(.example) | \(.property) | \(.value) | \(.unit) | \(.note) | \(.version) | \(.timestamp) |"' results.json >> report.md
+          jq -r '.[] | "| \(.target\) | \(.language\) | \(.flavor\) | \(.example\) | \(.property\) | \(.value\) | \(.unit\) | \(.note\) | \(.version\) | \(.timestamp\) |"' results.json >> report.md
 
           asset_path="report.md"
           asset_name="python-circuitpython-hello-world-report.md"
