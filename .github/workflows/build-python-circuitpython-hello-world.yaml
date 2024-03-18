@@ -146,3 +146,9 @@ jobs:
             --header "Content-Type: application/octet-stream" \
             --data-binary "@$asset_path" \
             --url "${{ needs.get_release.outputs.upload_url }}?name=Run${GITHUB_RUN_ID}_${TARGET}_${asset_name}"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 'firmware'
+          path: examples/python/circuitpython/hello_world/out.bin
