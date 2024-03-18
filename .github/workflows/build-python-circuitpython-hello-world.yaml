@@ -151,4 +151,4 @@ jobs:
         if: always()
         with:
           name: 'firmware'
-          path: examples/python/circuitpython/hello_world/out.bin
+          path: examples/python/circuitpython/hello_world/{out.bin,diagram.json}
